@@ -4,7 +4,7 @@ with open("readme.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="b23-eya46",
+    name="nonebot-plugin-b23",
     version="0.0.1",
     author="eya46",  # 作者，可以写自己的姓名
     author_email="eya46@qq.com",  # 作者联系方式，可写自己的邮箱地址
