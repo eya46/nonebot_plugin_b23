@@ -5,9 +5,9 @@ setuptools.setup(
     version="0.0.3",
     author="eya46",
     install_requires=[
-        'httpx',
-        'nonebot2',
-        'pydantic'
+        'httpx~=0.23.0',
+        'nonebot2>=2.0.0-beta.1',
+        'pydantic~=1.10.4'
     ],
     author_email="eya46@qq.com",  # 作者联系方式，可写自己的邮箱地址
     description="nonebot2 plugin B站热搜",  # 包的简述
