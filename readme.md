@@ -12,18 +12,19 @@
 
 ## 安装
 
-pip install nonebot-plugin-b23==0.0.6
+pip install nonebot-plugin-b23==0.0.7
 
 ## 配置
 
-|      名称      |       默认值       |    描述    |
-|:------------:|:---------------:|:--------:|
-| b23_commands | {'b23', 'B站热搜'} |   命令名    |
-|  b23_block   |      False      | 是否阻止向下传播 |
-| b23_priority |       99        |   优先级    |
+|       名称       |       默认值       |    描述    |
+|:--------------:|:---------------:|:--------:|
+|  b23_commands  | {'b23', 'B站热搜'} |   命令名    |
+|   b23_block    |      False      | 是否阻止向下传播 |
+|  b23_priority  |       99        |   优先级    |
+| b23_max_length |       21        |  最多热搜数量  |
 
 ## [依赖](requirements.txt)
 
 * httpx~=0.23.0
-* nonebot2>=2.0.0-beta.1
+* nonebot2~=2.0.0
 * pydantic~=1.10.4
