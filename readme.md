@@ -12,7 +12,7 @@
 
 ## 安装
 
-pip install nonebot-plugin-b23==0.0.7
+pip install nonebot-plugin-b23==0.0.8
 
 ## 配置
 
