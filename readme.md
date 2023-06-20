@@ -18,7 +18,7 @@
 
 * nonebot2 2.0.0正式版本👇
 
-> pip install nonebot-plugin-b23==0.0.9
+> pip install nonebot-plugin-b23==0.1.0
 
 ## 配置
 
