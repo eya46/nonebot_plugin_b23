@@ -12,7 +12,13 @@
 
 ## 安装
 
-pip install nonebot-plugin-b23==0.0.8
+* nonebot2 2.0.0rc版本👇
+
+> pip install nonebot-plugin-b23==0.0.8
+
+* nonebot2 2.0.0正式版本👇
+
+> pip install nonebot-plugin-b23==0.0.9
 
 ## 配置
 

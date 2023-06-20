@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="nonebot-plugin-b23",
-    version="0.0.8",
+    version="0.0.9",
     author="eya46",
     install_requires=[
         'httpx~=0.23.0',

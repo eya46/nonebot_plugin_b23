@@ -14,6 +14,7 @@ __plugin_meta__ = PluginMetadata(
         "发送指令获取B站热搜(移动端)\n"
         f"指令:{','.join(config.b23_commands)}"
     ),
+    type="application",
     homepage="https://github.com/eya46/nonebot_plugin_b23",
     config=Config,
     supported_adapters=None,
