@@ -1,5 +1,6 @@
 from httpx import AsyncClient
 from nonebot import on_command, get_driver
+from nonebot.internal.adapter import Message
 from nonebot.params import RawCommand, CommandArg
 from nonebot.plugin import PluginMetadata
 
@@ -31,7 +32,8 @@ b23_command = on_command(
 
 
 @b23_command.handle()
-async def b23_handler(command: str = RawCommand(), arg: str = CommandArg()):
+async def b23_handler(command: str = RawCommand(), arg: Message = CommandArg()):
+    arg = arg.extract_plain_text()
     if arg.isdigit():
         try:
             arg = int(arg)
