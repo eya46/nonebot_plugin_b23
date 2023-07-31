@@ -1,6 +1,6 @@
 from httpx import AsyncClient
 from nonebot import on_command, get_driver
-from nonebot.params import RawCommand
+from nonebot.params import RawCommand, CommandArg
 from nonebot.plugin import PluginMetadata
 
 from .config import Config
@@ -12,7 +12,9 @@ __plugin_meta__ = PluginMetadata(
     description="获取B站热搜(移动端)",
     usage=(
         "发送指令获取B站热搜(移动端)\n"
-        f"指令:{','.join(config.b23_commands)}"
+        f"指令:{','.join(config.b23_commands | {config.b23_default_command, })}\n"
+        f"参数(可选):热搜数量\n"
+        f"例:/{config.b23_default_command} 10\n"
     ),
     type="application",
     homepage="https://github.com/eya46/nonebot_plugin_b23",
@@ -21,7 +23,7 @@ __plugin_meta__ = PluginMetadata(
 )
 
 b23_command = on_command(
-    "b站热搜",
+    config.b23_default_command,
     aliases=config.b23_commands,
     block=config.b23_block,
     priority=config.b23_priority
@@ -29,16 +31,26 @@ b23_command = on_command(
 
 
 @b23_command.handle()
-async def b23_handler(command: str = RawCommand()):
+async def b23_handler(command: str = RawCommand(), arg: str = CommandArg()):
+    if arg.isdigit():
+        try:
+            arg = int(arg)
+            if arg < 1 or arg > 100:
+                raise ValueError("热搜数量必须在1-100之间")
+            limit = arg
+        except Exception as e:
+            return await b23_command.send(f"参数错误[{arg}]:{e}")
+    else:
+        limit = config.b23_max_length
     try:
         async with AsyncClient() as client:
             res = await client.get(
-                "https://app.bilibili.com/x/v2/search/trending/ranking"
+                f"https://app.bilibili.com/x/v2/search/trending/ranking?limit={limit}"
             )
             msg = f"{command}:\n"
             b23_list = res.json().get("data", {}).get("list", [])
-            for i in range(min(len(b23_list), config.b23_max_length)):
-                msg += f"{i + 1}.{b23_list[i]['show_name']}\n"
+            for index, i in enumerate(b23_list):
+                msg += f"{index + 1}.{i['show_name']}\n"
             await b23_command.send(msg.strip())
     except Exception as e:
-        await b23_command.send(f"获取B站热搜失败,error:{e}")
+        await b23_command.send(f"获取<{command}>失败,error:\n{e}")

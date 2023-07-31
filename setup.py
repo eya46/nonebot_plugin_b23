@@ -2,9 +2,7 @@ import setuptools
 
 setuptools.setup(
     install_requires=[
-        'httpx~=0.23.0',
-        'nonebot2~=2.0.0',
-        'pydantic~=1.10.4'
+        'nonebot2[httpx]>=2.0.0',
     ],
     author_email="eya46@qq.com",
     url="https://github.com/eya46/nonebot_plugin_b23",
