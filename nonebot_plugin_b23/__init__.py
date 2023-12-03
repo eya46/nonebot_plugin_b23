@@ -1,12 +1,10 @@
 from httpx import AsyncClient
-from nonebot import on_command, get_driver
+from nonebot import on_command
 from nonebot.internal.adapter import Message
 from nonebot.params import RawCommand, CommandArg
 from nonebot.plugin import PluginMetadata
 
-from .config import Config
-
-config = Config.parse_obj(get_driver().config)
+from .config import config, Config
 
 __plugin_meta__ = PluginMetadata(
     name="B站热搜",
@@ -33,7 +31,7 @@ b23_command = on_command(
 
 @b23_command.handle()
 async def b23_handler(command: str = RawCommand(), arg: Message = CommandArg()):
-    arg = arg.extract_plain_text()
+    arg = arg.extract_plain_text().strip()
     if arg.isdigit():
         try:
             arg = int(arg)

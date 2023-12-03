@@ -6,12 +6,12 @@
 * b23
 
 ## 使用
+
 获取B站热搜(默认20条)
 > /b23
 
 获取10条B站热搜
 > /b23 10
-
 
 ## 作用
 
@@ -23,9 +23,13 @@
 
 > pip install nonebot-plugin-b23==0.0.9
 
-* nonebot2 2.0.0正式版本👇
+* nonebot2 2.0.0+正式版本👇
 
 > pip install nonebot-plugin-b23==0.1.2
+
+* nonebot2 pydantic<3.0.0,>=1.10.0
+
+> pip install nonebot-plugin-b23>=0.2.0
 
 ## 配置
 
