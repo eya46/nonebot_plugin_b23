@@ -1,1 +1,0 @@
-nonebot2[httpx]>=2.0.0

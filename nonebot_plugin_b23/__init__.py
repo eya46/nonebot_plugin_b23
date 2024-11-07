@@ -1,5 +1,5 @@
 from httpx import AsyncClient
-from nonebot import on_command
+from nonebot import on_command, logger
 from nonebot.internal.adapter import Message
 from nonebot.params import RawCommand, CommandArg
 from nonebot.plugin import PluginMetadata
@@ -25,7 +25,7 @@ b23_command = on_command(
     config.b23_default_command,
     aliases=config.b23_commands,
     block=config.b23_block,
-    priority=config.b23_priority
+    priority=config.b23_priority,
 )
 
 
@@ -45,7 +45,10 @@ async def b23_handler(command: str = RawCommand(), arg: Message = CommandArg()):
     try:
         async with AsyncClient() as client:
             res = await client.get(
-                f"https://app.bilibili.com/x/v2/search/trending/ranking?limit={limit}"
+                f"https://app.bilibili.com/x/v2/search/trending/ranking?limit={limit}",
+                headers={
+                    "User-Agent": config.b23_user_agent
+                }
             )
             msg = f"{command}:\n"
             b23_list = res.json().get("data", {}).get("list", [])
@@ -53,4 +56,5 @@ async def b23_handler(command: str = RawCommand(), arg: Message = CommandArg()):
                 msg += f"{index + 1}.{i['show_name']}\n"
             await b23_command.send(msg.strip())
     except Exception as e:
+        logger.exception(e)
         await b23_command.send(f"获取<{command}>失败,error:\n{e}")

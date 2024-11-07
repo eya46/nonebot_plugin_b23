@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "nonebot-plugin-b23"
+version = "0.4.0"
+description = "nonebot2 plugin B站热搜"
+authors = ["eya46 <61458340+eya46@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/eya46/nonebot_plugin_b23"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+nonebot2 = {version = "^2.3.0", extras = ["httpx"]}
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
